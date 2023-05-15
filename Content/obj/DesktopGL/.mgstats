@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/Download/D&D - Dungeons & Destiny/Content/Fonts/File.spritefont","D:/Download/D&D - Dungeons & Destiny/Content/bin/DesktopGL/Fonts/SplashFont.xnb","FontDescriptionProcessor","SpriteFontContent",2270,1056671,0,6122033
+"D:/Download/D&D - Dungeons & Destiny/Content/Images/Button.png","D:/Download/D&D - Dungeons & Destiny/Content/bin/DesktopGL/Images/Button.xnb","TextureProcessor","Texture2DContent",80307,80085,0,0256096
+"D:/Download/D&D - Dungeons & Destiny/Content/Images/MainBackground.jpg","D:/Download/D&D - Dungeons & Destiny/Content/bin/DesktopGL/Images/MainBackground.xnb","TextureProcessor","Texture2DContent",333948,8294485,0,2743123
