@@ -25,16 +25,16 @@ public class Button : Component
     {
         get
         {
-            return new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
+            return new Rectangle((int)Position.X - texture.Width/2, (int)Position.Y - texture.Height/2, texture.Width, texture.Height);
         }
     }
     public string Text { get; set; }
 
-    public Button(Color color, SpriteFont font)
-    {
-        this.font = font;
-        PenColor = color;
-    }
+    //public Button(Color color, SpriteFont font)
+    //{
+    //    this.font = font;
+    //    PenColor = color;
+    //}
 
     public Button (Texture2D texture, SpriteFont font)
     {
