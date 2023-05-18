@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Quickie011;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,12 +37,14 @@ namespace DD_Dungeons_Destiny
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             graphics.ApplyChanges();
+            Globals.Content = Content;
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Globals.SpriteBatch = spriteBatch;
             currentState = new MainMenu(this, graphics.GraphicsDevice, Content);
             //MainMenu.Font = Content.Load<SpriteFont>("Fonts\\SplashFont");
             // TODO: use this.Content to load your game content here

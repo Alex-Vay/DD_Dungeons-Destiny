@@ -10,8 +10,8 @@ namespace DD_Dungeons_Destiny;
 public class MainMenu : State
 {
     public static Texture2D MainBackground { get; set; }
-    static int timeCounter = 0;
-    static Color color;
+    //static int timeCounter = 0;
+    //static Color color;
     private List<Component> components;
     public static SpriteFont Font { get; set; }
 

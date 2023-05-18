@@ -4,13 +4,25 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Download/D&amp;D - Dungeons &amp; Destiny/Content/Fonts/File.spritefont</File>
-    <File>D:/Download/D&amp;D - Dungeons &amp; Destiny/Content/Images/Button.png</File>
-    <File>D:/Download/D&amp;D - Dungeons &amp; Destiny/Content/Images/MainBackground.jpg</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Area.png</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Area2.png</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Fonts/File.spritefont</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/gem.png</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/Button.png</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/Card.jpg</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/Dungeon.png</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/MainBackground.jpg</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/socket.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>Fonts/SplashFont</File>
+    <File xsi:nil="true" />
     <File>Images/Button</File>
+    <File xsi:nil="true" />
+    <File>Images/Dungeon</File>
     <File>Images/MainBackground</File>
+    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
