@@ -53,6 +53,7 @@ namespace DD_Dungeons_Destiny
 
         protected override void Update(GameTime gameTime)
         {
+            Globals.GameTime = gameTime;
             if (nextState != null)
             {
                 currentState = nextState;

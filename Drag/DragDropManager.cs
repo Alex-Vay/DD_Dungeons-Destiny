@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace Quickie011;
 
 public static class DragDropManager
@@ -48,6 +50,14 @@ public static class DragDropManager
             }
         }
     }
+
+    public static void AddDrag (ITargetable tar, IDraggable item)
+    { 
+        tar.WAR.Add(item);
+        item.Position = tar.Position + new Vector2(200, 200) * tar.WAR.Count / 10;
+    }
+
+
 
     private static void CheckDragStop()
     {

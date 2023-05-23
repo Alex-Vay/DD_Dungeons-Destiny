@@ -10,6 +10,8 @@
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/gem.png</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/Button.png</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/Card.jpg</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/Door.png</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/Door2.png</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/Dungeon.png</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Images/MainBackground.jpg</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/socket.png</File>
@@ -20,6 +22,8 @@
     <File>Fonts/SplashFont</File>
     <File xsi:nil="true" />
     <File>Images/Button</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>Images/Dungeon</File>
     <File>Images/MainBackground</File>
