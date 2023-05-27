@@ -2,7 +2,7 @@ namespace Quickie011;
 
 public static class InputManager
 {
-    private static MouseState _lastMouseState;
+    public static MouseState _lastMouseState;
     public static Vector2 MousePosition => Mouse.GetState().Position.ToVector2();
     public static bool MouseClicked { get; private set; }
     public static bool MouseReleased { get; private set; }

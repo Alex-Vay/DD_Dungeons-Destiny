@@ -1,7 +1,7 @@
 namespace Quickie011;
 public class Sprite
 {
-    protected readonly Texture2D texture;
+    public readonly Texture2D texture;
     public readonly Vector2 origin;
     public Vector2 Position { get; set; }
 
@@ -9,7 +9,7 @@ public class Sprite
                                       (int)(Position.Y - origin.Y),
                                       texture.Width,
                                       texture.Height);
-
+    
     public Sprite(Texture2D tex, Vector2 pos)
     {
         texture = tex;

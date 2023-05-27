@@ -45,6 +45,7 @@ namespace DD_Dungeons_Destiny
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.SpriteBatch = spriteBatch;
+            Globals.Game = this;
             currentState = new MainMenu(this, graphics.GraphicsDevice, Content);
             //MainMenu.Font = Content.Load<SpriteFont>("Fonts\\SplashFont");
             // TODO: use this.Content to load your game content here
