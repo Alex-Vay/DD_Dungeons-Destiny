@@ -19,11 +19,11 @@ public class Sprite
 
     public void Draw()
     {
-        Globals.SpriteBatch.Draw(texture, Position, null, Color.White, 0, origin, 1, SpriteEffects.None, 1);
+        Globals.SpriteBatch.Draw(texture, Position, null, Color.White, 0, origin, 1, SpriteEffects.None, 0);
     }
 
     public void Draw(Color color)
     {
-        Globals.SpriteBatch.Draw(texture, Position, null, color, 0, origin, 1, SpriteEffects.None, 1);
+        Globals.SpriteBatch.Draw(texture, Position, null, color, 0, origin, 1, SpriteEffects.None, 0);
     }
 }

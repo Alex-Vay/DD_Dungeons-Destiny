@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace DD_Dungeons_Destiny;
-
 public enum Dun
 {
     Sk,
@@ -20,6 +19,16 @@ public enum Dun
     Th,
     Dem,
     H
+}
+
+public enum WAR
+{
+    Tank,
+    Mag,
+    Warrior,
+    Thief,
+    Gurd,
+    Admin,
 }
 
 public class Table
@@ -116,15 +125,15 @@ public class Table
         //    //_sockets.Add(new(socketTexture, new(600 + (i * 75), 900)));
         //}
         //_game.Clear();
-        
-        for (int i = 0; i < 3; i++)
-            _sockets.Add(new(socketTexture, new(400 + (i * 600), 500)));
         _game.Add(new(socketTexture2, new(425, 850)));
         _game.Add(new(socketTexture2, new(1325, 850)));
+        for (int i = 0; i < 3; i++)
+            _sockets.Add(new(socketTexture, new(400 + (i * 600), 500)));
         for (int i = 0; i < 7; i++)
         {
-            _gems.Add(new(gemTexture, new Vector2(0, 0), (WAR)new Random().Next(3)));
-            DragDropManager.AddDrag(_game[0], _gems[i]);
+            var z = (WAR)new Random().Next(4);
+            _gems.Add(new Gem(Globals.Content.Load<Texture2D>(z.ToString()), _game[0].Position - new Vector2(_game[0].Rectangle.Width / 2 -100, 0) + new Vector2(100, 0) * _game[0].WAR.Count, z));
+            _game[0].WAR.Add(_gems.Last());
         }
         MonGen(level);
     }
@@ -133,7 +142,7 @@ public class Table
     public void Fight(int i)
     {
         _sockets[i].MonsterC = monsters[(Dun)i];
-        if (_sockets[i].MonsterC <= _sockets[i].WAR.Count)
+        if (_sockets[i].MonsterC <= _sockets[i].WAR.Count || _sockets[i].WAR.Select(x => x.WAR).Contains((WAR)i))
             text[i] = (new(content.Load<SpriteFont>("Fonts\\SplashFont"), "Win", new Vector2(400 + 600 * (i), 50), Color.Gold));
         else
             text[i] = (new(content.Load<SpriteFont>("Fonts\\SplashFont"), "Lose", new Vector2(400 + 600 * (i), 50), Color.Gold));
@@ -146,11 +155,11 @@ public class Table
         if (x > 8) x = 8;
         for (int i = 0; i < x; i++)
         {
-            monsters[(Dun)(new Random().Next(5))]++;
+            monsters[(Dun)(new Random().Next(cof))]++;
         }
         for (int i = 0; i < 3; i++)
         {
-            var gemTexture = Globals.Content.Load<Texture2D>("Sl");
+            var gemTexture = Globals.Content.Load<Texture2D>(((Dun)i).ToString());
             for (int j = 0; j < monsters[(Dun)i]; j++)
                 _sprites.Add(new(gemTexture, _sockets[i].Position - _sockets[i].origin + new Vector2(100, 100) + new Vector2(j % 3 * 200, j / 3 * 150)));
         }
@@ -168,7 +177,7 @@ public class Table
                 if (item.Rectangle.Contains(InputManager.MousePosition))
                 {
                     DragDropManager.Drag(item);
-                    //_game[1].WAR.Remove(item);
+                    _game[1].WAR.Remove(item);
                     break;
                 }
             }
@@ -196,10 +205,16 @@ public class Table
                 monsters[(Dun)i] = 0;
             }
             var zero = _game[1].Position - new Vector2(_game[1].Rectangle.Width / 2 - 100, 0);
-            for (int  j = 0; j < _game[1].WAR.Count; j++) 
+            for (int j = 0; j < _game[1].WAR.Count; j++)
             {
                 _game[1].WAR[j].Position = zero + new Vector2(100, 0) * j;
             }
+            var zero2 = _game[0].Position - new Vector2(_game[0].Rectangle.Width / 2 - 100, 0);
+            for (int j = 0; j < _game[0].WAR.Count; j++)
+            {
+                _game[0].WAR[j].Position = zero2 + new Vector2(100, 0) * j;
+            }
+            foreach (var i in _game) { }
             MonGen(level);
         }
         GameEnd();
@@ -239,11 +254,13 @@ public class Table
             level = 1;
             Walk++;
             monsters[Dun.Dem] = 0;
-            WalkEnd();
+            DragDropManager.Clean();
             _gems.Clear();
             _sprites.Clear();
             _sockets.Clear();
+            _game.Clear();
             text = new JustText[3];
+            WalkEnd();
             for (int i = 0; i < monsters.Count; i++)
             {
                 if ((Dun)i == Dun.Dem) continue;

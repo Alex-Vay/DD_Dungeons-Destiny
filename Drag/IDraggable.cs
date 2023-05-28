@@ -1,11 +1,5 @@
 namespace Quickie011;
 
-public enum WAR
-{
-    Warrior,
-    Archer,
-    Tank
-}
 public interface IDraggable
 {
     WAR WAR { get; set; }
