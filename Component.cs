@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-
-namespace DD_Dungeons_Destiny;
+﻿namespace DD_Dungeons_Destiny;
 
 public abstract class Component
 {
