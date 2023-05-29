@@ -144,7 +144,7 @@ internal class GameMenu : State
 
     public override void PostUpdate(GameTime gameTime)
     {
-        
+        text = table.text;
     }
 
     public override void Update(GameTime gameTime)
@@ -161,6 +161,7 @@ internal class GameMenu : State
         //_gems = table._gems;
         foreach (var comp in components)
             comp.Update(gameTime);
+        
         table.LevelEnd();
         table.GameEnd();
         table.WalkEnd();

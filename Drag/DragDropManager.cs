@@ -6,7 +6,7 @@ namespace Quickie011;
 public static class DragDropManager
 {
     private static readonly List<IDraggable> _draggables = new();
-    private static readonly List<ITargetable> _targets = new();
+    private static List<ITargetable> _targets = new();
     private static IDraggable _dragItem;
     private static List<IDraggable> _nodrag = new ();
     private static List<IDraggable> _draggables2 = new();
@@ -21,7 +21,8 @@ public static class DragDropManager
         //var ind = _nodrag[_nodrag.IndexOf(item)].Position;
 
         _nodrag.Remove(item);
-        _dragItem = item;
+        Update2();
+        //_dragItem = item;
 
         //var i = 0;
         //foreach (var z in _nodrag)
@@ -50,7 +51,7 @@ public static class DragDropManager
         {
             foreach (var draggable in _draggables2)
             {
-                if (draggable.Rectangle.Contains(InputManager.MousePosition))
+                if (draggable.Rectangle.Contains(InputManager.MousePosition) && !_nodrag.Contains(draggable))
                 {
                     _dragItem = draggable;
                     break;
@@ -105,17 +106,30 @@ public static class DragDropManager
     {
         var z = GameMenu.table._gems;
         var zz = new List<Gem>();
-        var d = new List<IDraggable>();
+        var d = z.Select(x => x as IDraggable).ToList();
         foreach (var item in _targets)
             for (int j = 0; j < item.WAR.Count; j++)
             {
                 zz.Add(z[_draggables.IndexOf(item.WAR[j])]);
             }
+
+        for (int item = _nodrag.Count - 1; item >= 0; item--)
+            zz.Add(z[d.IndexOf(_nodrag[item])]);
+
+        //for (int item = 0; item < _nodrag.Count; item++)
+        //    zz.Add(z[d.IndexOf(_nodrag[item])]);
+
+        //foreach (var item in z)
+        //    if (!zz.Contains(item) && _nodrag.Contains((IDraggable)item)) zz.Add(item);
+
         foreach (var item in z)
             if (!zz.Contains(item)) zz.Add(item);
-        //_draggables = zz.Select(x => x as IDraggable).ToList();
+
         _draggables2 = zz.Select(x => x as IDraggable).ToList();
         _draggables2.Reverse();
+
+        //_draggables = zz.Select(x => x as IDraggable).ToList();
+
         GameMenu._gems = zz;
     }
 //public static void AddDrag (ITargetable tar, IDraggable item)
@@ -130,8 +144,16 @@ public static class DragDropManager
         _targets.Clear();
         _nodrag.Clear();
     }
+    public static void CleanT()
+    {
+        var t = new List<ITargetable>();
+        t.Add(_targets[0]);
+        t.Add(_targets[1]);
+        _targets = t;
+    }
 
-private static void CheckDragStop()
+
+    private static void CheckDragStop()
     {
         if (InputManager.MouseReleased)
         {
