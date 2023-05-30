@@ -1,4 +1,4 @@
-﻿namespace DD_Dungeons_Destiny;
+﻿namespace Extra;
 
 public class TextClass
 {

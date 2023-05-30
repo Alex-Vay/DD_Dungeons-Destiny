@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Content;
 
-namespace Drag;
+namespace Extra;
 
 public static class Globals
 {

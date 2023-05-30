@@ -1,4 +1,6 @@
-﻿using Controls.DragMechanics;
+﻿using Controls;
+using Controls.DragMechanics;
+using Extra;
 
 namespace DD_Dungeons_Destiny;
 public enum DungeonObjectType
@@ -26,10 +28,10 @@ public class Table
     public Dictionary<DungeonObjectType, int> objectsOnLevel = new Dictionary<DungeonObjectType, int>() 
     { { DungeonObjectType.Sk, 0 }, { DungeonObjectType.Sl, 0 }, { DungeonObjectType.G, 0 }, { DungeonObjectType.H, 0 } }; //{ Dun.Th, 0 }, { Dun.H, 0 },  { Dun.Dem, 0 } };
     private int level = 1;
-    public int Score = 0;
-    private int Walk = 1;
+    private int score = 0;
+    private int walk = 1;
     private int Res = 0;
-    public int Phase = 1;
+    int phase = 1;
     int objectsTypesCount = 4;
     int unitCount = 7;
 
@@ -53,7 +55,7 @@ public class Table
     {
         var unitsAreaText = content.Load<Texture2D>("11");
         UnitsAreas.Add(new(unitsAreaText, new(425, 850)));
-        UnitsAreas.Add(new(unitsAreaText, new(1325, 850)));
+        UnitsAreas.Add(new(unitsAreaText, new(1425, 850)));
         for (int i = 0; i < unitCount; i++)
         {
             var z = (UnitType)new Random().Next(4);
@@ -75,21 +77,21 @@ public class Table
         var fight1 = new Button(buttonTexture, buttonFont)
         {
             //Position = new Vector2(960f/ graphicsDevice.DisplayMode.Width * 600 - buttonTexture.Width/2, 360f / graphicsDevice.DisplayMode.Height * 300 - buttonTexture.Height/2),
-            Position = new Vector2(400, 900),
+            Position = new Vector2(400 - 25, 75),
             Text = "Драка"
         };
         fight1.Click += (sender, e) => Fight(0);
         Buttons.Add(fight1);
         var fight2 = new Button(buttonTexture, buttonFont)
         {
-            Position = new Vector2(400 + 600, 900),
+            Position = new Vector2(400 + 600, 75),
             Text = "Драка"
         };
         fight2.Click += (sender, e) => Fight(1);
         Buttons.Add(fight2);
         var fight3 = new Button(buttonTexture, buttonFont)
         {
-            Position = new Vector2(400 + 2 * 600, 900),
+            Position = new Vector2(400 + 2 * 600, 75),
             Text = "Драка"
         };
         fight3.Click += (sender, e) => Fight(2);
@@ -97,7 +99,7 @@ public class Table
 
         var doorText = content.Load<Texture2D>("Door");
         for (int i = 0; i < 3; i++)
-            FightAreas.Add(new(doorText, new(400 + (i * 600), 500)));
+            FightAreas.Add(new(doorText, new(370 + (i * 610), 500)));
         FillDungeonWithObjects(level);
     }
 
@@ -111,7 +113,7 @@ public class Table
         DragDropManager.CleanAreas();
         var drink = new Button(buttonTexture, buttonFont)
         {
-            Position = new Vector2(400 + 200, 900),
+            Position = new Vector2(400 + 540, 75),
             Text = "Выпить"
         };
         drink.Click += (sender, e) => Drink(3);
@@ -133,16 +135,16 @@ public class Table
     public void Fight(int i)
     {
         if (FightAreas[i].MonsterCount <= FightAreas[i].UnitsList.Count || FightAreas[i].UnitsList.Select(x => x.UnitType).Contains((UnitType)i))
-            FightResult[i] = (new(content.Load<SpriteFont>("Fonts\\SplashFont"), "Победа", new Vector2(400 + 600 * (i), 50), Color.Gold));
+            FightResult[i] = (new(content.Load<SpriteFont>("Fonts\\SplashFont2"), "Победа", new Vector2(1740, 50 * i), Color.Gold));
         else
-            FightResult[i] = (new(content.Load<SpriteFont>("Fonts\\SplashFont"), "Поражение", new Vector2(400 + 600 * (i), 50), Color.Gold));
+            FightResult[i] = (new(content.Load<SpriteFont>("Fonts\\SplashFont2"), "Поражение", new Vector2(1740, 50 * i), Color.Gold));
     }
 
     public void Drink(int i)
     {
         FightAreas[0].MonsterCount = objectsOnLevel[(DungeonObjectType)i];
         if (FightAreas[0].UnitsList.Count >= 1 && Res == 0) Res = FightAreas[0].MonsterCount;
-        FightResult[0] = (new(content.Load<SpriteFont>("Fonts\\SplashFont"), "Победа", new Vector2(400 + 600, 50), Color.Gold));
+        FightResult[0] = (new(content.Load<SpriteFont>("Fonts\\SplashFont2"), "Победа", new Vector2(1740, 50), Color.Gold));
     }
 
     //public void Open(int i)
@@ -157,10 +159,10 @@ public class Table
 
     public void CheckTrueRevival()
     {
-        if (Res == 0 && FightResult[0] != null && FightResult[0].Text == "Победа" && Phase == 2)
+        if (Res == 0 && FightResult[0] != null && FightResult[0].Text == "Победа" && phase == 2)
         {
             LevelClean();
-            Phase = 1;
+            phase = 1;
             GenerateFirstPhase();
         }
         if (InputManager.MouseClicked && Res > 0)
@@ -214,10 +216,10 @@ public class Table
     public void LevelEnd()
     {
         CheckTrueRevival();
-        if (FightResult.All(x => x != null && x.Text == "Победа") && Res == 0 && Phase == 1)
+        if (FightResult.All(x => x != null && x.Text == "Победа") && Res == 0 && phase == 1)
         {
             LevelClean();
-            Phase = 2;
+            phase = 2;
             level++;
             GenerateSecondPhase();
         }
@@ -273,9 +275,10 @@ public class Table
     {
         if (UnitsAreas[0].UnitsList.Count < 1 && FightResult.Any(x => x != null && x.Text == "Поражение") && !CheckMistake())
         {
-            Score += level - 1;
+            score += level - 1;
+            Globals.Score = score;
             level = 1;
-            Walk++;
+            walk++;
             //monsters[Dun.Dem] = 0;
             DragDropManager.Clean();
             Units.Clear();
@@ -295,11 +298,11 @@ public class Table
 
     public void GameEnd()
     {
-        if (Walk > 3)
+        if (walk > 3)
         {
-            Walk = 1;
+            walk = 1;
             LevelClean();
-            Globals.Score = Score;
+            Globals.Score = score;
             game.ChangeState(new GameEnd(game, graphicsDevice, content));
         }
     }

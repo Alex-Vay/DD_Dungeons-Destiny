@@ -1,4 +1,4 @@
-﻿namespace DD_Dungeons_Destiny;
+﻿namespace Controls;
 
 public abstract class Component
 {

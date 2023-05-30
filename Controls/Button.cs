@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Controls;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;

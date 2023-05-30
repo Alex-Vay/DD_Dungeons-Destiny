@@ -6,4 +6,4 @@ global using System.Linq;
 global using DD_Dungeons_Destiny;
 global using Microsoft.Xna.Framework.Content;
 global using System;
-global using Drag;
+global using Controls.DragMechanics;

@@ -53,14 +53,14 @@ public static class DragDropManager
                 if (item.UnitsList.Contains(dragItem))
                 {
                     var ind = item.UnitsList.IndexOf(dragItem);
-                    if (item == dragActiveAreas[0])
+                    if (item == dragActiveAreas[0] || item == dragActiveAreas[1])
                         dragItem.Position = item.Position - new Vector2(item.Rectangle.Width / 2 - 100, 0) + new Vector2(110, 0) * ind;
                     else dragItem.Position = item.Position - new Vector2(item.Rectangle.Width / 2 - 100, 0) + new Vector2(ind % 4 * 125, ind / 4 * 150);
                 }
                 else
                 {
                     var count = item.UnitsList.Count;
-                    if (item == dragActiveAreas[0])
+                    if (item == dragActiveAreas[0] || item == dragActiveAreas[1])
                         dragItem.Position = item.Position - new Vector2(item.Rectangle.Width / 2 - 100, 0) + new Vector2(110, 0) * count;
                     else dragItem.Position = item.Position - new Vector2(item.Rectangle.Width / 2 - 100, 0) + new Vector2(count % 4 * 125, count / 4 * 150);
                     item.UnitsList.Add(dragItem);
@@ -73,7 +73,7 @@ public static class DragDropManager
             var zeroPosition = item.Position - new Vector2(item.Rectangle.Width / 2 - 100, 0);
             for (int j = 0; j < item.UnitsList.Count; j++)
             {
-                if (item == dragActiveAreas[0]) item.UnitsList[j].Position = zeroPosition + new Vector2(110, 0) * j;
+                if (item == dragActiveAreas[0] || item == dragActiveAreas[1]) item.UnitsList[j].Position = zeroPosition + new Vector2(110, 0) * j;
                 else item.UnitsList[j].Position = zeroPosition + new Vector2(j % 4 * 110, j / 4 * 150);
             }
         }

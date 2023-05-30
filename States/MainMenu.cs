@@ -1,4 +1,5 @@
-﻿using States;
+﻿using Controls;
+using States;
 
 namespace DD_Dungeons_Destiny;
 public class MainMenu : State
