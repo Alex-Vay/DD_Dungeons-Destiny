@@ -1,15 +1,4 @@
 ﻿using Controls.DragMechanics;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace DD_Dungeons_Destiny;
 public enum DungeonObjectType
@@ -42,6 +31,7 @@ public class Table
     private int Res = 0;
     public int Phase = 1;
     int objectsTypesCount = 4;
+    int unitCount = 7;
 
     //private int Thes = 0;
 
@@ -64,7 +54,7 @@ public class Table
         var unitsAreaText = content.Load<Texture2D>("11");
         UnitsAreas.Add(new(unitsAreaText, new(425, 850)));
         UnitsAreas.Add(new(unitsAreaText, new(1325, 850)));
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < unitCount; i++)
         {
             var z = (UnitType)new Random().Next(4);
             Units.Add(new Unit(content.Load<Texture2D>(z.ToString()), UnitsAreas[0].Position - new Vector2(UnitsAreas[0].Rectangle.Width / 2 - 100, 0) + new Vector2(110, 0) * UnitsAreas[0].UnitsList.Count, z));
@@ -127,6 +117,7 @@ public class Table
         drink.Click += (sender, e) => Drink(3);
         Buttons.Add(drink);
         FightAreas.Add(new(content.Load<Texture2D>("Door"), new(920, 500)));
+        PredrawObjects(3, 4);
 
         //var thret = new Button(buttonTexture, buttonFont)
         //{
@@ -187,14 +178,13 @@ public class Table
                         UnitsAreas[1].UnitsList[j].Position = zero + new Vector2(110, 0) * j;
                     }
                     break;
-                }
-                
+                }             
             }
         if (UnitsAreas[1].UnitsList.Count == 0 && Res > 0)
             Res = 0;
     }
 
-    //Рефлексия
+    //Рефлексия возможно
     public void FillDungeonWithObjects(int x)
     {
         for (int i = 0; i < objectsOnLevel.Count; i++)
@@ -207,12 +197,17 @@ public class Table
         {
             objectsOnLevel[(DungeonObjectType)(new Random().Next(objectsTypesCount))]++;
         }
-        for (int i = 0; i < 3; i++)
+        PredrawObjects(0, 3);
+    }
+
+    public void PredrawObjects(int l, int r)
+    {
+        for (int i = l; i < r; i++)
         {
-            FightAreas[i].MonsterCount = objectsOnLevel[(DungeonObjectType)i];
-            var gemTexture = content.Load<Texture2D>(((DungeonObjectType)i).ToString());
+            FightAreas[i % 3].MonsterCount = objectsOnLevel[(DungeonObjectType)i];
+            var objectTexture = content.Load<Texture2D>(((DungeonObjectType)i).ToString());
             for (int j = 0; j < objectsOnLevel[(DungeonObjectType)i]; j++)
-                Objects.Add(new(gemTexture, FightAreas[i].Position - FightAreas[i].origin + new Vector2(100, 100) + new Vector2(j % 3 * 200, j / 3 * 150)));
+                Objects.Add(new(objectTexture, FightAreas[i % 3].Position - FightAreas[i % 3].origin + new Vector2(100, 100) + new Vector2(j % 3 * 200, j / 3 * 150)));
         }
     }
 
@@ -249,6 +244,7 @@ public class Table
 
     public void UpdateUnitsPos()
     {
+        if (UnitsAreas.Count == 0) return;
         var zeroPos1 = UnitsAreas[0].Position - new Vector2(UnitsAreas[0].Rectangle.Width / 2 - 100, 0);
         for (int j = 0; j < UnitsAreas[0].UnitsList.Count; j++)
         {
@@ -303,7 +299,8 @@ public class Table
         {
             Walk = 1;
             LevelClean();
-            game.ChangeState(new MainMenu(game, graphicsDevice, content));
+            Globals.Score = Score;
+            game.ChangeState(new GameEnd(game, graphicsDevice, content));
         }
     }
 

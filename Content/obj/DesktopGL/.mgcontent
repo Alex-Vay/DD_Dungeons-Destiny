@@ -8,9 +8,11 @@
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Button.png</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Door.png</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Dungeon.jpg</File>
-    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Fonts/File.spritefont</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Fonts/SplashFont.spritefont</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Fonts/SplashFont2.spritefont</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/G.jpeg</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Gurd.jpg</File>
+    <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/H.jpg</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Mag.jpg</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/MainBackground.jpg</File>
     <File>C:/Users/Alex/Desktop/D&amp;D - Dungeons &amp; Destiny/Content/Sk.jpg</File>
@@ -24,7 +26,9 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
-    <File>Fonts/SplashFont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

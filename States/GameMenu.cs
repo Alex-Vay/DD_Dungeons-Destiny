@@ -1,13 +1,10 @@
 ﻿using Controls.DragMechanics;
-using Microsoft.Xna.Framework;
-
-using Microsoft.Xna.Framework.Graphics;
 using States;
 
 
 namespace DD_Dungeons_Destiny;
 
-internal class GameMenu : State
+public class GameMenu : State
 {
     public static Table table = new Table();
     public static List<Unit> Units = new();

@@ -61,12 +61,19 @@
 /processorParam:TextureFormat=Color
 /build:Dungeon.jpg
 
-#begin Fonts/File.spritefont
+#begin Fonts/SplashFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/File.spritefont;Fonts/SplashFont
+/build:Fonts/SplashFont.spritefont
+
+#begin Fonts/SplashFont2.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/SplashFont2.spritefont
 
 #begin G.jpeg
 /importer:TextureImporter
@@ -91,6 +98,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Gurd.jpg
+
+#begin H.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:H.jpg
 
 #begin Mag.jpg
 /importer:TextureImporter

@@ -8,4 +8,5 @@ public static class Globals
     public static ContentManager Content { get; set; }
     public static SpriteBatch SpriteBatch { get; set; }
     public static Game1 Game { get; set; }
+    public static int Score { get; set; }
 }
